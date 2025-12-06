@@ -16,5 +16,22 @@ public class Main {
     System.out.println(product3.equals(product4));
     System.out.println(product1.equals(product4));
 
+    Product[] products1 = {product2, product3};
+    Product[] products2 = {product1, product3};
+    Product[] products3 = {product3, product4};
+
+    Order order1 = new Order("Покупатель1", products1);
+    System.out.println(order1);
+    Order order2 = new Order("Покупатель2", products2);
+    Order order3 = new Order("Покупатель3", products3);
+    Order order4 = new Order("Покупатель1", products2);
+
+    System.out.println(order1.equals(order2));
+    System.out.println(order2.equals(order2));
+    System.out.println(order3.equals(order1));
+    System.out.println(order3.equals(order4));
+
+
+
     }
 }
