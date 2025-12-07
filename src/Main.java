@@ -24,12 +24,22 @@ public class Main {
     System.out.println(order1);
     Order order2 = new Order("Покупатель2", products2);
     Order order3 = new Order("Покупатель3", products3);
-    Order order4 = new Order("Покупатель1", products2);
+    Order order4 = new Order("Покупатель1", products1);
 
+    System.out.println(order1);
+    System.out.println(order2);
     System.out.println(order1.equals(order2));
+
+    System.out.println(order2);
     System.out.println(order2.equals(order2));
+
+    System.out.println(order3);
+    System.out.println(order1);
     System.out.println(order3.equals(order1));
-    System.out.println(order3.equals(order4));
+
+    System.out.println(order1);
+    System.out.println(order4);
+    System.out.println(order1.equals(order4));
 
 
 
