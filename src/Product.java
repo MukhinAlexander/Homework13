@@ -29,4 +29,9 @@ public class Product {
         Product product = (Product) o;
         return id == product.id && Objects.equals(category, product.category);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, category);
+    }
 }

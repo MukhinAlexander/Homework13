@@ -22,11 +22,7 @@ public class Order {
             return false;
         }
         Order order = (Order) ob;
-        boolean arraysAreEqual = true;
-        if (Objects.equals(customer, order.customer)) {
-            return true;
-        }
-        if (basket == null || order.basket != null) {
+        if (basket == null || order.basket == null) {
             return false;
         }
         if (basket == null && order.basket == null) {
@@ -35,11 +31,16 @@ public class Order {
         if (basket.length != order.basket.length) {
             return false;
         }
+
         for (int i = 0; i < basket.length; i++) {
-            if (Objects.equals(basket[i], order.basket[i])) {
-                return true;
+            if (basket[i] == null && order.basket[i] == null) {
+                return false;
             }
         }
-        return true;
+        return Objects.equals(customer, order.customer) && basket.equals(order.basket);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(customer, Arrays.hashCode(basket));
     }
 }
