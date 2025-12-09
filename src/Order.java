@@ -17,27 +17,34 @@ public class Order {
 
     @Override
     public boolean equals(Object ob) {
-        if (this == ob) return true;
-        if (ob == null || getClass() != ob.getClass()) {
+        if (this == ob) return true; //проверка на то, что ссылки ссылаются на один и тот же объект
+        if (ob == null || getClass() != ob.getClass()) { // проверка на то, что объекта нет, или объекты разных классов
             return false;
         }
-        Order order = (Order) ob;
-        if (basket == null || order.basket == null) {
-            return false;
-        }
-        if (basket == null && order.basket == null) {
-            return true;
-        }
-        if (basket.length != order.basket.length) {
-            return false;
+        Order order = (Order) ob; // приведение объектов к одному типу
+        if (!Objects.equals(customer, order.customer)) { // если покупатель один и тот же, то вернуть НЕ true, то есть false,
+            return false;                                // чтобы продолжить сравнивать объекты
         }
 
-        for (int i = 0; i < basket.length; i++) {
-            if (basket[i] == null && order.basket[i] == null) {
-                return false;
-            }
+        if (basket.length != order.basket.length) {      // проверка на равенство длины массивов(второго параметра)
+            return false;
+
+        }if (basket == null || order.basket == null) {    // если только один из вторых из параметров объекта Order null, выводим false
+            return false;
         }
-        return Objects.equals(customer, order.customer) && basket.equals(order.basket);
+        if (basket == null && order.basket == null) {    // если у обоих объектов второй параметр null, то они равны
+            return true;
+        }
+
+        for (int i = 0; i < basket.length; i++) {                   //пробегаемся по всем элементам массива
+            if (basket[i] == null && order.basket[i] != null) {     //если элемент первого массива null, а элемент второго НЕ null,
+                return false;                                       //то вываливаем false, чтобы пройтись по всем элементам массивов обоих объектов
+            }                                                       //чтобы затем их сравнить equal'ом
+            if (!basket[i].equals(order.basket[i])) {
+                return false;                                       //если убрать НЕ в условии и выводить true, если элементы,
+            }                                                       //то метод не проверит полностью массив
+        }
+        return true;
     }
     @Override
     public int hashCode() {
